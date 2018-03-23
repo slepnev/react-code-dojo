@@ -1,8 +1,16 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
 class App extends Component {
+  const IngredientsList = ({list}) =>
+    React.createElement('ul', null,
+      list.map((ingredient, i) =>
+        React.createElement('li', {key: i}, ingredient)
+      )
+    );
+  const Ingredients = React.createFactory(IngredientsList);
+
   render() {
     return (
       <div className="App">
