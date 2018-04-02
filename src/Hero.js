@@ -1,19 +1,27 @@
 import React, {Component} from "react";
 import "./Hero.css"
 
+
 class Hero extends Component {
 
   constructor(props){
     super();
-    this.state = props;
+    this.state = {
+      count: 0
+    };
+  }
+
+  handleClick(){
+    // this.setState({count: this.state.count + 1});
   }
 
   render() {
     return (
       <div className="container hero">
-        <img src={this.state.logo} alt="" height="60px"/>
-        <h1>{this.state.title}</h1>
-        <div className="app">{this.state.subtitle}</div>
+        <div className="count">{this.state.count}</div>
+        <img src={this.props.logo} alt="" height="60px" onClick={this.handleClick}/>
+        <h1>{this.props.title}</h1>
+        <div className="app">{this.props.subtitle}</div>
       </div>
     );
   }

@@ -16,18 +16,17 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log("Starting");
+    // console.log("Starting");
   }
 
   componentWillUnmount() {
-    console.log("Update")
+    // console.log("Update")
   }
 
   render() {
-    console.log(list);
     return (
       <div className="container">
-        {list.map((item, i) => <Hero logo={item.logo} title={item.title} subtitle={item.subtitle} />)}
+        {list.map((item, i) => <Hero key={i} logo={item.logo} title={item.title} subtitle={item.subtitle} />)}
       </div>
     );
   }
