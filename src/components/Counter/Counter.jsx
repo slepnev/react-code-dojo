@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import logProps from "../../hoc/log-props"
 import "./Counter.scss";
 
 
@@ -18,4 +19,4 @@ class Counter extends Component {
   }
 }
 
-export default Counter;
+export default logProps(Counter);

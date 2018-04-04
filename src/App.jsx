@@ -15,7 +15,7 @@ const list = [
     subtitle: "Description on Angular 2",
     logo: "https://avatars.mds.yandex.net/get-entity_search/114969/250691678/S122x122FitScale"
   },
-]
+];
 
 class App extends Component {
 
