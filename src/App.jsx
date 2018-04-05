@@ -1,51 +1,30 @@
-import React, {Component} from "react";
-import logo from "./logo.svg";
-import Hero from "./components/Hero/Hero";
-import "./App.scss";
+import React, {Component} from "react"
+import {Route, BrowserRouter} from "react-router-dom"
+import createBrowserHistory from "history/createBrowserHistory"
+import Main from "./components/Main/Main"
+import Auth from "./components/Auth/Auth"
+import Menu from "./components/Menu/Menu"
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary"
 
-const list = [
-  {title: "React", subtitle: "Description on React", logo: logo},
-  {
-    title: "Angular 2",
-    subtitle: "Description on Angular 2",
-    logo: "https://angular.io/assets/images/logos/angular/logo-nav@2x.png"
-  },
-  {
-    title: "Vue.js",
-    subtitle: "Description on Angular 2",
-    logo: "https://avatars.mds.yandex.net/get-entity_search/114969/250691678/S122x122FitScale"
-  },
+const history = createBrowserHistory();
+
+const menu = [
+  {title: "Главная", url: "/", active: true, component: Main},
+  {title: "Авторизация", url: "/auth", active: false, component: Auth},
 ];
 
 class App extends Component {
 
-  constructor(props) {
-    super();
-  }
-
-  componentDidMount() {
-    console.log("Starting");
-  }
-
-  componentWillUnmount() {
-    console.log("Destroy")
-  }
-
-  componentWillReceiveProps(nextProps) {
-    console.log("Update props")
-  }
-
   render() {
     return (
-      <div className="container h-100">
-        <div className="row h-100 justify-content-center align-items-center">
-          {list.map((item, i) =>
-            <div className="col-4" key={i}>
-              <Hero logo={item.logo} title={item.title} subtitle={item.subtitle}/>
-            </div>
+      <BrowserRouter hiistory={history}>
+        <ErrorBoundary>
+          <Menu menu={menu} history={history} />
+          {menu.map((item, i) =>
+            <Route key={i} exact path={item.url} component={item.component} />
           )}
-        </div>
-      </div>
+        </ErrorBoundary>
+      </BrowserRouter>
     );
   }
 }
