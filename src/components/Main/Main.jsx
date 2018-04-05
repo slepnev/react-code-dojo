@@ -1,7 +1,6 @@
 import React, {Component} from "react";
-import logo from "../../logo.svg";
 import Hero from "../Hero/Hero";
-import "./App.scss";
+import logo from "../../logo.svg"
 
 const list = [
   {title: "React", subtitle: "Description on React", logo: logo},
@@ -37,8 +36,8 @@ class Main extends Component {
 
   render() {
     return (
-      <div className="container h-100">
-        <div className="row h-100 justify-content-center align-items-center">
+      <div className="container mt-4">
+        <div className="row justify-content-center align-items-center">
           {list.map((item, i) =>
             <div className="col-4" key={i}>
               <Hero logo={item.logo} title={item.title} subtitle={item.subtitle}/>
