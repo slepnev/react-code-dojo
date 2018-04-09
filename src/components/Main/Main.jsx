@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Hero from "../Hero/Hero";
-import logo from "../../logo.svg"
+import logo from "../../logo.svg";
 
 const list = [
   {title: "React", subtitle: "Description on React", logo: logo},

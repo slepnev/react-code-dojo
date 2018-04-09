@@ -30,7 +30,8 @@ class Main extends Component {
             )}
           </ul>
           <span className="navbar-text">
-            Тестирование роутинга
+            <a href="" className="nav-link" onClick={(e) => {e.preventDefault(); this.props.onModal();}}>
+              Открыть модальное окно (Portal)</a>
           </span>
         </div>
       </nav>
