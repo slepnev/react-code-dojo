@@ -1,16 +1,12 @@
 import React, {Component} from "react";
-import { connect } from "react-redux";
 
-class Store extends Component {
+class User extends Component {
 
   render() {
     return (<div className="container">
         <div className="row justify-content-center mt-3">
           <div className="col-auto">
-            <h1>User - Redux test</h1>
-            <ul>
-              <li>{this.props.user}</li>
-            </ul>
+            <h1>User - {this.props.user}</h1>
           </div>
         </div>
       </div>
@@ -18,11 +14,4 @@ class Store extends Component {
     );
   }
 }
-
-
-function mapStateToProps(state) {
-  return {
-    user: state.userInfo.user
-  }
-}
-export default connect(mapStateToProps)(Store);
+export default User;

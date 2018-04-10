@@ -7,7 +7,8 @@ class Year extends Component {
   }
 
   onBtnClick(event){
-    return this.props.setYear(event.tart.textContent);
+    console.log(event.tartget.textContent);
+    return this.props.setYear(event.tartget.textContent);
   }
 
   render() {
