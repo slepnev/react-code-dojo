@@ -6,21 +6,21 @@ import Auth from "./components/Auth/Auth"
 import Menu from "./components/Menu/Menu"
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary"
 import Modal from "./components/Modal/Modal";
-import StoreTest from "./components/StoreTest/StoreTest";
+import StoreTest from "./containers/StoreTest/StoreTest";
 import { connect } from "react-redux";
 
 const history = createBrowserHistory();
-
-const menu = [
-  {title: "Главная", url: "/", component: Main},
-  {title: "Авторизация", url: "/auth", component: Auth},
-  {title: "Пользователь (Redux test)", url: "/redux-test", component: StoreTest},
-];
 
 class App extends Component {
   state = {
     isModalOpen: false
   };
+
+  menu = [
+    {title: "Главная", url: "/", component: Main},
+    {title: "Авторизация", url: "/auth", component: Auth},
+    {title: `Пользователь (${this.props.user})`, url: "/redux-test", component: StoreTest},
+  ];
 
   toggleModal = () => {
     this.setState(state => ({ isModalOpen: !this.state.isModalOpen }))
@@ -30,8 +30,8 @@ class App extends Component {
     return (
       <BrowserRouter hiistory={history}>
         <ErrorBoundary>
-          <Menu menu={menu} history={history} onModal={this.toggleModal}/>
-          {menu.map((item, i) =>
+          <Menu menu={this.menu} history={history} onModal={this.toggleModal} user={this.props.user}/>
+          {this.menu.map((item, i) =>
             <Route key={i} exact path={item.url} component={item.component} />
           )}
           {this.state.isModalOpen &&
@@ -39,7 +39,6 @@ class App extends Component {
               <Auth />
             </Modal>
           }
-          App.js: {this.props.user}
         </ErrorBoundary>
       </BrowserRouter>
     );

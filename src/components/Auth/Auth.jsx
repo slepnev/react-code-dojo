@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+import { connect } from "react-redux";
+import {setUserDataAction} from "../../actions/actionUser"
 
 
 class Auth extends Component {
@@ -7,8 +9,8 @@ class Auth extends Component {
     super();
 
     this.state = {
-      email: '',
-      password: ''
+      email: props.email,
+      password: props.password
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.onReset = this.onReset.bind(this);
@@ -21,11 +23,12 @@ class Auth extends Component {
 
   onSubmit(e){
     e.preventDefault();
-    console.log(this);
+    this.props.setUserDataFunction({ email: this.state.email, password: this.state.password });
   }
 
   onReset(e){
     e.preventDefault();
+    this.props.setUserDataFunction({ email: '', password: ''});
     this.setState({ email: '', password: ''});
   }
 
@@ -59,4 +62,17 @@ class Auth extends Component {
     );
   }
 }
-export default Auth;
+
+function mapStateToProps(state) {
+  return {...state.userInfo}
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setUserDataFunction: data => {
+      dispatch(setUserDataAction(data))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);

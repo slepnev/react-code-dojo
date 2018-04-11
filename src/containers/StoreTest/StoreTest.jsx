@@ -1,8 +1,9 @@
 import React, {Component} from "react";
 import { connect } from "react-redux";
-import User from "../User/User";
-import Year from "../Year/Year";
+import User from "../../components/User/User";
+import Year from "../../components/Year/Year";
 import setYearAction from "../../actions/actionYear"
+import {setUserNameAction} from "../../actions/actionUser"
 
 class StoreTest extends Component {
 
@@ -11,10 +12,10 @@ class StoreTest extends Component {
       <div className="container">
         {JSON.stringify(this.props)}
         <div className="row justify-content-center mt-3">
-          <div className="col-4">
+          <div className="col-5">
             <User {...this.props}/>
           </div>
-          <div className="col-4">
+          <div className="col-3">
             <Year year={this.props.year} setYear={this.props.setYearFunction}/>
           </div>
         </div>
@@ -24,16 +25,16 @@ class StoreTest extends Component {
 }
 
 function mapStateToProps(state) {
-  return {
-    user: state.userInfo.user,
-    year: state.userInfo.year
-  }
+  return {...state.userInfo}
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     setYearFunction: year => {
       dispatch(setYearAction(year))
+    },
+    setUserNameFunction: name => {
+      dispatch(setUserNameAction(name))
     }
   }
 }
