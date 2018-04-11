@@ -2,13 +2,12 @@ import React, { Component } from "react";
 
 class Year extends Component {
   constructor(props){
-    super(props);
-    this.onBtnClick = this.onBtnClick.bind();
+    super();
+    this.onBtnClick = this.onBtnClick.bind(this);
   }
 
   onBtnClick(event){
-    console.log(event.tartget.textContent);
-    return this.props.setYear(event.tartget.textContent);
+    return this.props.setYear(event.target.textContent);
   }
 
   render() {
@@ -17,7 +16,7 @@ class Year extends Component {
         <button className="btn btn-info" onClick={this.onBtnClick}>1990</button>
         <button className="btn btn-info" onClick={this.onBtnClick}>2000</button>
         <button className="btn btn-info" onClick={this.onBtnClick}>2010</button>
-        <p>This year has been chosen - {this.props.year}</p>
+        <p className="mt-2">This year has been chosen - {this.props.year}</p>
       </div>
     );
   }
