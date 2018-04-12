@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import Counter from "../Counter/Counter"
-import "./Hero.scss"
+import Counter from "./Counter"
+import "../styles/Hero.scss"
 
 
 class Hero extends Component {

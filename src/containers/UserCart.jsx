@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import { connect } from "react-redux";
-import User from "../../components/User/User";
-import Year from "../../components/Year/Year";
-import setYearAction from "../../actions/actionYear"
-import {setUserNameAction} from "../../actions/actionUser"
+import User from "../components/User";
+import Year from "../components/Year";
+import setYearAction from "../actions/year"
+import setUserNameAction from "../actions/userName"
 
-class StoreTest extends Component {
+class UserCart extends Component {
 
   render() {
     return (
@@ -39,4 +39,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(StoreTest);
+export default connect(mapStateToProps, mapDispatchToProps)(UserCart);

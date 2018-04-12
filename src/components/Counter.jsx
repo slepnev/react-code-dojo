@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import logProps from "../../hoc/log-props"
-import "./Counter.scss";
+import logProps from "../utils/log-props"
+import "../styles/Counter.scss";
 
 
 class Counter extends Component {

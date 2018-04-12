@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import { connect } from "react-redux";
-import {setUserDataAction} from "../../actions/actionUser"
+import setUserDataAction from "../actions/userData"
 
 
 class Auth extends Component {
@@ -58,6 +58,7 @@ class Auth extends Component {
             </form>
           </div>
         </div>
+        {this.props.children}
       </div>
     );
   }

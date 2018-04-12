@@ -1,20 +1,6 @@
 import React, {Component} from "react";
-import Hero from "../Hero/Hero";
-import logo from "../../logo.svg";
-
-const list = [
-  {title: "React", subtitle: "Description on React", logo: logo},
-  {
-    title: "Angular 2",
-    subtitle: "Description on Angular 2",
-    logo: "https://angular.io/assets/images/logos/angular/logo-nav@2x.png"
-  },
-  {
-    title: "Vue.js",
-    subtitle: "Description on Angular 2",
-    logo: "https://avatars.mds.yandex.net/get-entity_search/114969/250691678/S122x122FitScale"
-  },
-];
+import Hero from "../components/Hero";
+import { connect } from "react-redux";
 
 class Main extends Component {
 
@@ -38,7 +24,7 @@ class Main extends Component {
     return (
       <div className="container mt-4">
         <div className="row justify-content-center align-items-center">
-          {list.map((item, i) =>
+          {this.props.heroes.map((item, i) =>
             <div className="col-4" key={i}>
               <Hero logo={item.logo} title={item.title} subtitle={item.subtitle}/>
             </div>
@@ -49,4 +35,8 @@ class Main extends Component {
   }
 }
 
-export default Main;
+function mapStateToProps(state) {
+  return {heroes: [...state.heroes]}
+}
+
+export default connect(mapStateToProps)(Main);

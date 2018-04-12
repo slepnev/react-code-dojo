@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Link, NavLink} from "react-router-dom";
 
-class Main extends Component {
+class Menu extends Component {
 
   constructor(props) {
     super();
@@ -39,4 +39,4 @@ class Main extends Component {
   }
 }
 
-export default Main;
+export default Menu;
