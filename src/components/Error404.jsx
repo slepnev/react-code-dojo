@@ -13,9 +13,7 @@ class Error404 extends Component {
         <h1>Страница не найдена</h1>
         <div className="alert alert-danger mt-2"> Error 404 </ div>
         <Router history={history}>
-          <Route path="/aut" component={Auth}>
-            <Route path="/1" component={Year}/>
-          </Route>
+          <Route path="/authorisation" component={Auth}/>
         </Router>
       </div>
     )
