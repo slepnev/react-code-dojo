@@ -8,6 +8,7 @@ import Error404 from "../components/Error404"
 import ErrorBoundary from "./ErrorBoundary"
 import Modal from "../components/Modal";
 import UserCart from "./UserCart";
+import Year from "../components/Year"
 import { connect } from "react-redux";
 
 const history = createBrowserHistory();
