@@ -24,7 +24,7 @@ class Menu extends Component {
           <ul className="navbar-nav mr-auto">
             {this.props.menu.map((item, i) =>
                 <li key={i} className="nav-item">
-                  <NavLink activeClassName='active' className="nav-link" exact to={item.url}>{item.title}</NavLink>
+                  <NavLink activeClassName='active' className="nav-link" to={item.url}>{item.title}</NavLink>
                 </li>
 
             )}

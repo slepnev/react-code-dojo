@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import {Route, BrowserRouter, Switch} from "react-router-dom"
+import {Route, BrowserRouter, Switch, Redirect} from "react-router-dom"
 import createBrowserHistory from "history/createBrowserHistory"
 import Main from "./Main"
 import Auth from "./Auth"
@@ -19,7 +19,7 @@ class App extends Component {
   };
 
   menu = [
-    {title: "Главная", url: "/", component: Main},
+    {title: "Главная", url: "/home", component: Main},
     {title: "Авторизация", url: "/auth", component: Auth},
     {title: `Пользователь (${this.props.user})`, url: "/redux-test", component: UserCart},
   ];
@@ -35,9 +35,10 @@ class App extends Component {
           <Menu menu={this.menu} history={history} onModal={this.toggleModal} user={this.props.user}/>
           <Switch>
             {this.menu.map((item, i) =>
-              <Route key={i} exact path={item.url} component={item.component} />
+              <Route key={i} path={item.url} component={item.component} />
             )}
-            <Route component={Error404}/>
+            <Route path='404' component={Error404}/>
+            <Redirect to='/home' />
           </Switch>
           {this.state.isModalOpen &&
             <Modal onClose={this.toggleModal}>
