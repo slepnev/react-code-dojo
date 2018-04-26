@@ -1,15 +1,15 @@
-import React, {Component} from "react"
-import {Route, BrowserRouter, Switch, Redirect} from "react-router-dom"
-import createBrowserHistory from "history/createBrowserHistory"
-import Main from "./Main"
-import Auth from "./Auth"
-import Menu from "../components/Menu"
-import Error404 from "../components/Error404"
-import ErrorBoundary from "./ErrorBoundary"
+import React, {Component} from "react";
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
+import createBrowserHistory from "history/createBrowserHistory";
+import Main from "./Main";
+import Auth from "./Auth";
+import Menu from "../components/Menu";
+import Error404 from "../components/Error404";
+import ErrorBoundary from "./ErrorBoundary";
 import Modal from "../components/Modal";
 import UserCart from "./UserCart";
-import Year from "../components/Year"
-import { connect } from "react-redux";
+import {connect} from "react-redux";
+import Form from "../components/Form";
 
 const history = createBrowserHistory();
 
@@ -21,11 +21,12 @@ class App extends Component {
   menu = [
     {title: "Главная", url: "/home", component: Main},
     {title: "Авторизация", url: "/auth", component: Auth},
-    {title: `Пользователь (${this.props.user})`, url: "/redux-test", component: UserCart},
+    {title: `Пользователь`, url: "/redux-test", component: UserCart},
+    {title: `Форма`, url: "/form", component: Form},
   ];
 
   toggleModal = () => {
-    this.setState(state => ({ isModalOpen: !this.state.isModalOpen }))
+    this.setState(state => ({isModalOpen: !this.state.isModalOpen}))
   };
 
   render() {
@@ -35,15 +36,15 @@ class App extends Component {
           <Menu menu={this.menu} history={history} onModal={this.toggleModal} user={this.props.user}/>
           <Switch>
             {this.menu.map((item, i) =>
-              <Route key={i} path={item.url} component={item.component} />
+              <Route key={i} path={item.url} component={item.component}/>
             )}
             <Route path='404' component={Error404}/>
-            <Redirect to='/home' />
+            <Redirect to='/home'/>
           </Switch>
           {this.state.isModalOpen &&
-            <Modal onClose={this.toggleModal}>
-              <Auth />
-            </Modal>
+          <Modal onClose={this.toggleModal}>
+            <Auth />
+          </Modal>
           }
         </ErrorBoundary>
       </BrowserRouter>
