@@ -12,7 +12,7 @@ class Form extends Component {
       select: "react"
     };
 
-    this.helper();
+    // this.helper();
   }
 
   helper() {
