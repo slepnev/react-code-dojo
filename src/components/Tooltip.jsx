@@ -11,7 +11,6 @@ class Tooltip extends Component {
 
   toggle(){
     const tooltipNode = ReactDOM.findDOMNode(this);
-    console.log(tooltipNode);
     this.setState({
       opacity: !this.state.opacity,
       top: tooltipNode.offsetTop,
@@ -23,17 +22,22 @@ class Tooltip extends Component {
     const style = {
       zIndex: (this.state.opacity) ? 1000 : -1000,
       opacity: +this.state.opacity,
-      top: (this.state.top || 0) + 20,
+      top: (this.state.top || 0) - 34,
       left: (this.state.left || 0) -30
     };
     return (
-      <div style={{display: "inline"}}>
+      <div style={{display: "inline", cursor: "pointer"}}>
         <span style={{color: "blue"}}
           onMouseEnter={this.toggle}
           onMouseOut={this.toggle}>
           {this.props.children}
         </span>
-         {this.props.text}
+        <div className="tooltip bs-tooltip-left" style={style}>
+          <div className="tooltip-arrow"></div>
+          <div className="tooltip-inner">
+            {this.props.text}
+          </div>
+        </div>
       </div>
     );
   }
