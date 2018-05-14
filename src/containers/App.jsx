@@ -10,6 +10,7 @@ import Modal from "../components/Modal";
 import UserCart from "./UserCart";
 import {connect} from "react-redux";
 import Form from "../components/Form";
+import {hot} from "react-hot-loader";
 
 const history = createBrowserHistory();
 
@@ -58,4 +59,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(hot(module)(App));
