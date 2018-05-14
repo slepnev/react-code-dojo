@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import Tooltip from "./Tooltip";
+import {hot} from "react-hot-loader";
 
 class Form extends Component {
   constructor(props) {
