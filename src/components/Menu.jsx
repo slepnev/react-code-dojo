@@ -30,8 +30,10 @@ class Menu extends Component {
             )}
           </ul>
           <span className="navbar-text">
-            <a href="" className="nav-link" onClick={(e) => {e.preventDefault(); this.props.onModal();}}>
-              Открыть модальное окно (Portal)</a>
+            <button className="btn btn-success" onClick={(e) => {e.preventDefault(); this.props.onModal();}}>
+              Войти (Portal)</button>
+            <button className="btn btn-danger" onClick={(e) => {e.preventDefault();}}>
+              Выйти</button>
           </span>
         </div>
       </nav>

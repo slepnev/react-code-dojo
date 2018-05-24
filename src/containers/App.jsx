@@ -11,6 +11,8 @@ import UserCart from "./UserCart";
 import {connect} from "react-redux";
 import Form from "../components/Form";
 import {hot} from "react-hot-loader";
+import RecursiveRouting from "./RecursiveRouting";
+import Protected from "../components/Protected";
 
 const history = createBrowserHistory();
 
@@ -24,6 +26,8 @@ class App extends Component {
     {title: "Авторизация", url: "/auth", component: Auth},
     {title: `Пользователь`, url: "/redux-test", component: UserCart},
     {title: `Форма`, url: "/form", component: Form},
+    {title: `Рекурсия`, url: "/recursive", component: RecursiveRouting},
+    {title: `Protected`, url: "/protected", component: Protected},
   ];
 
   toggleModal = () => {
@@ -53,10 +57,6 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    user: state.userInfo.user
-  }
-}
+const mapStateToProps = state => ({user: state.userInfo.user});
 
 export default connect(mapStateToProps)(hot(module)(App));
