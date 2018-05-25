@@ -13,6 +13,7 @@ import Form from "../components/Form";
 import {hot} from "react-hot-loader";
 import RecursiveRouting from "./RecursiveRouting";
 import Protected from "../components/Protected";
+import AuthRoute from "./AuthRoute";
 
 const history = createBrowserHistory();
 
@@ -40,8 +41,13 @@ class App extends Component {
         <ErrorBoundary>
           <Menu menu={this.menu} history={history} onModal={this.toggleModal} user={this.props.user}/>
           <Switch>
-            {this.menu.map((item, i) =>
-              <Route key={i} path={item.url} component={item.component}/>
+            {this.menu.map((item, i) => {
+                if(item.url === "/protected"){
+                  return (<AuthRoute key={i} path={item.url} component={item.component}/>);
+                }else{
+                  return (<Route key={i} path={item.url} component={item.component}/>);
+                }
+              }
             )}
             <Route path='404' component={Error404}/>
             <Redirect to='/home'/>
