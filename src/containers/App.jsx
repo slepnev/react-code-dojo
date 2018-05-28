@@ -14,6 +14,7 @@ import {hot} from "react-hot-loader";
 import RecursiveRouting from "./RecursiveRouting";
 import Protected from "../components/Protected";
 import AuthRoute from "./AuthRoute";
+import Logout from "../actions/logout";
 
 const history = createBrowserHistory();
 
@@ -39,11 +40,12 @@ class App extends Component {
     return (
       <BrowserRouter hiistory={history}>
         <ErrorBoundary>
-          <Menu menu={this.menu} history={history} onModal={this.toggleModal} user={this.props.user}/>
+          <Menu menu={this.menu} history={history} onModal={this.toggleModal}
+                user={this.props.user} auth={this.props.auth} setLogout={this.props.setLogout}/>
           <Switch>
             {this.menu.map((item, i) => {
                 if(item.url === "/protected"){
-                  return (<AuthRoute key={i} path={item.url} component={item.component}/>);
+                  return (<AuthRoute key={i} path={item.url} component={item.component}  auth={this.props.auth}/>);
                 }else{
                   return (<Route key={i} path={item.url} component={item.component}/>);
                 }
@@ -63,6 +65,13 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({user: state.userInfo.user});
+const mapStateToProps = state => ({user: state.userInfo.user, auth: state.auth});
 
-export default connect(mapStateToProps)(hot(module)(App));
+function mapDispatchToProps(dispatch) {
+  return {
+    setLogout: () => {
+      dispatch(Logout())
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(hot(module)(App));

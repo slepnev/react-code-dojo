@@ -12,6 +12,10 @@ class Menu extends Component {
     console.log('Menu app');
   }
 
+  logout(){
+    this.props.setLogout();
+  }
+
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -30,10 +34,13 @@ class Menu extends Component {
             )}
           </ul>
           <span className="navbar-text">
-            <button className="btn btn-success" onClick={(e) => {e.preventDefault(); this.props.onModal();}}>
-              Войти (Portal)</button>
-            <button className="btn btn-danger" onClick={(e) => {e.preventDefault();}}>
-              Выйти</button>
+            {
+              !this.props.auth ?
+                <button className="btn btn-success" onClick={(e) => {e.preventDefault();this.props.onModal();}}>
+                  Войти (Portal)</button>
+                :
+                <button className="btn btn-danger" onChange={this.logout}>Выйти</button>
+            }
           </span>
         </div>
       </nav>
