@@ -1,16 +1,16 @@
 import React, {Component} from "react";
 import {Redirect, Route} from "react-router-dom";
 
-const AuthRoute = ({ component: Component, ...rest }) => (
+const AuthRoute = ({ component: Component, auth, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      (true) ? (
+      (auth) ? (
         <Component {...props} />
       ) : (
         <Redirect
           to={{
-            pathname: "/login",
+            pathname: "/auth",
             state: { from: props.location }
           }}
         />

@@ -1,6 +1,9 @@
 import React, {Component} from "react";
 import { connect } from "react-redux";
 import setUserDataAction from "../actions/userData"
+import Logout from "../actions/logout";
+import Login from "../actions/login";
+import { withRouter } from "react-router-dom";
 
 
 class Auth extends Component {
@@ -24,12 +27,15 @@ class Auth extends Component {
   onSubmit(e){
     e.preventDefault();
     this.props.setUserDataFunction({ email: this.state.email, password: this.state.password });
+    this.props.setLogin();
+    this.props.history.push("/protected");
   }
 
   onReset(e){
     e.preventDefault();
     this.props.setUserDataFunction({ email: '', password: ''});
     this.setState({ email: '', password: ''});
+    this.props.setLogout();
   }
 
   render() {
@@ -65,15 +71,21 @@ class Auth extends Component {
 }
 
 function mapStateToProps(state) {
-  return {...state.userInfo}
+  return {...state.userInfo, auth: state.auth}
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     setUserDataFunction: data => {
       dispatch(setUserDataAction(data))
+    },
+    setLogin: () => {
+      dispatch(Login())
+    },
+    setLogout: () => {
+      dispatch(Logout())
     }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Auth));
