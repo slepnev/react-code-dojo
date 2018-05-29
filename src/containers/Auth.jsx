@@ -28,6 +28,9 @@ class Auth extends Component {
     e.preventDefault();
     this.props.setUserDataFunction({ email: this.state.email, password: this.state.password });
     this.props.setLogin();
+    if(this.props.closeModel){
+      this.props.closeModel();
+    }
     this.props.history.push("/protected");
   }
 

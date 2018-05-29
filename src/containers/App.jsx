@@ -56,7 +56,7 @@ class App extends Component {
           </Switch>
           {this.state.isModalOpen &&
           <Modal onClose={this.toggleModal}>
-            <Auth />
+            <Auth closeModel={this.toggleModal}/>
           </Modal>
           }
         </ErrorBoundary>
