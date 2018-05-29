@@ -4,8 +4,9 @@ import {Link, NavLink} from "react-router-dom";
 class Menu extends Component {
 
   constructor(props) {
-    super();
-    this.menuCollapse = this.menuCollapse.bind();
+    super(props);
+    this.menuCollapse = this.menuCollapse.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   menuCollapse(){
@@ -39,7 +40,7 @@ class Menu extends Component {
                 <button className="btn btn-success" onClick={(e) => {e.preventDefault();this.props.onModal();}}>
                   Войти (Portal)</button>
                 :
-                <button className="btn btn-danger" onChange={this.logout}>Выйти</button>
+                <button className="btn btn-danger" onClick={(e) => {e.preventDefault(); this.logout();}}>Выйти</button>
             }
           </span>
         </div>
